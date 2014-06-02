@@ -2,8 +2,6 @@
 
 THROTTLE=$(curl -s http://betab.it/bb-throttle.html)
 
-echo "$THROTTLE"
-
 if [ $THROTTLE -eq $THROTTLE ]; then
     sed -i '.xml' 's/net_throttle="[0-9][0-9]"/net_throttle="'$THROTTLE'"/' /Library/Backblaze.bzpkg/bzdata/bzinfo.xml
     echo "Setting Backblaze throttle to $THROTTLE%"
