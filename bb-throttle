@@ -1,0 +1,30 @@
+#!/bin/bash
+
+THROTTLE=$(curl -s http://betab.it/bb-throttle.html)
+
+echo "$THROTTLE"
+
+if [ $THROTTLE -eq $THROTTLE ]; then
+    sed -i '.xml' 's/net_throttle="[0-9][0-9]"/net_throttle="'$THROTTLE'"/' /Library/Backblaze.bzpkg/bzdata/bzinfo.xml
+    echo "Setting Backblaze throttle to $THROTTLE%"
+#else
+#    echo "Backblaze throttle already set to $THROTTLE%"
+fi
+
+#if [ $* -eq $* ]; then
+#    sed -i '.xml' 's/net_throttle="[0-9][0-9]"/net_throttle="'$*'"/' /Library/Backblaze.bzpkg/bzdata/bzinfo.xml
+#    echo "Setting Backblaze throttle to $*%"
+#fi
+
+# Method for identifying existence of network device
+# ** Not currently working as the iPhone seems to go into non-responsive mode when asleep
+#
+#if [ $* == "ping" ]; then
+#    echo "Ping Requested"
+#    ping -c1 172.16.1.14
+#    if [ $? -eq 0 ]; then
+#        sed -i '.xml' 's/net_throttle="[0-9][0-9]"/net_throttle="50"/' /Library/Backblaze.bzpkg/bzdata/bzinfo.xml
+#    else
+#        sed -i '.xml' 's/net_throttle="[0-9][0-9]"/net_throttle="90"/' /Library/Backblaze.bzpkg/bzdata/bzinfo.xml
+#    fi
+#fi

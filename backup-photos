@@ -1,0 +1,15 @@
+#!/bin/bash
+SRC="/Volumes/Photographs"
+DST="/Volumes/My Book/Photographs Backup"
+
+if [ -d "$SRC" ] && [ -d "$DST" ]; then
+    echo "Photographs Source and Destination volumes found"
+    ~/bin/rsync-3.1.0/rsync3 -av  --info=progress2 /Volumes/Photographs/ /Volumes/My\ Book/Photographs\ Backup/
+elif [ ! -d "$SRC" ] && [ ! -d "$DST" ]; then
+    echo "Source and Destination not found"
+elif [ ! -d "$DST" ]; then
+    echo "Destination \"My Book\" not found"
+elif [ ! -d "$SRC" ]; then
+    echo "Source \"Photographs\" not found"
+fi
+
